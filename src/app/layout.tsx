@@ -33,6 +33,9 @@ export const metadata: Metadata = {
       "Safe, reliable, and conversion-focused LPG gas pipeline installation services across Chennai, OMR, ECR, and surrounding areas.",
     type: "website",
   },
+  icons: {
+    icon: "/website_images/logo_v2.png",
+  },
 };
 
 export default function RootLayout({

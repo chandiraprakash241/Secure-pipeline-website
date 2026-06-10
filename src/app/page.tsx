@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 
 type GalleryItem = {
   title: string;
+  location: string;
   category: string;
   src: string;
   alt: string;
@@ -24,44 +25,64 @@ const address =
   "No: 3/582, SRS Tower, Kanniyamman Kovil Street, Veeranam Road, Kelambakkam, Chennai, Tamil Nadu 603103";
 
 const heroImage =
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80";
+  "/website_images/hero_section_image_v2.png";
 
 const galleryImages: GalleryItem[] = [
   {
-    title: "Residential pipeline upgrade",
-    category: "Homes & villas",
-    src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
-    alt: "Residential gas pipeline installation project",
+    title: "Residential LPG Pipeline",
+    location: "Independent House, Kelambakkam",
+    category: "Residential",
+    src: "/website_images/resedential lpg pipeline.png",
+    alt: "Residential LPG Pipeline",
   },
   {
-    title: "Apartment kitchen line",
-    category: "Apartments",
-    src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-    alt: "Apartment LPG installation project",
+    title: "Home Gas Line Installation",
+    location: "Villa Project, OMR",
+    category: "Residential",
+    src: "/website_images/home gas line installation.png",
+    alt: "Home Gas Line Installation",
   },
   {
-    title: "Commercial kitchen routing",
-    category: "Restaurants",
-    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-    alt: "Commercial kitchen gas pipeline project",
+    title: "Residential Gas Piping",
+    location: "Individual House, Navalur",
+    category: "Residential",
+    src: "/website_images/resedential gas piping.png",
+    alt: "Residential Gas Piping",
   },
   {
-    title: "Hotel utility installation",
-    category: "Hotels",
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
-    alt: "Hotel gas pipeline installation project",
+    title: "External Gas Line Setup",
+    location: "Independent House, Chennai",
+    category: "Residential",
+    src: "/website_images/external gas line setup.png",
+    alt: "External Gas Line Setup",
   },
   {
-    title: "Industrial safety setup",
-    category: "Industrial facilities",
-    src: "https://images.unsplash.com/photo-1493244040629-496f6d136cc3?auto=format&fit=crop&w=1200&q=80",
-    alt: "Industrial pipeline installation project",
+    title: "Underground Gas Pipeline",
+    location: "Apartment Project, Sholinganallur",
+    category: "Commercial",
+    src: "/website_images/underground gas pipeline.png",
+    alt: "Underground Gas Pipeline",
   },
   {
-    title: "Before and after inspection",
-    category: "Maintenance",
-    src: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
-    alt: "Pipeline inspection and maintenance project",
+    title: "Commercial Gas Installation",
+    location: "Restaurant, OMR",
+    category: "Commercial",
+    src: "/website_images/commercial gas installation.png",
+    alt: "Commercial Gas Installation",
+  },
+  {
+    title: "Multi-Line Gas System",
+    location: "Hotel Kitchen, ECR",
+    category: "Commercial",
+    src: "/website_images/multiline gas system.png",
+    alt: "Multi-Line Gas System",
+  },
+  {
+    title: "Industrial Gas Pipeline",
+    location: "Factory Unit, Chengalpattu",
+    category: "Industrial",
+    src: "/website_images/industrial gas pipeline.png",
+    alt: "Industrial Gas Pipeline",
   },
 ];
 
@@ -70,61 +91,61 @@ const services = [
     title: "Residential LPG Pipeline Installation",
     description: "Safe, neat installations for independent homes and family residences.",
     icon: "home",
-    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Residential LPG Pipeline Installation.png",
   },
   {
     title: "Villa Gas Pipeline Systems",
     description: "Custom layouts designed for premium villas and duplex homes.",
     icon: "villa",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Villa Gas Pipeline Systems.png",
   },
   {
     title: "Apartment Gas Pipeline Installation",
     description: "Multi-unit safe routing with clean finishes and coordinated execution.",
     icon: "apartment",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Apartment Gas Pipeline Installation.png",
   },
   {
     title: "Hotel & Restaurant Gas Pipeline Solutions",
     description: "Commercial kitchen lines designed for busy hospitality operations.",
     icon: "restaurant",
-    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Hotel & Restaurant Gas Pipeline Solutions.png",
   },
   {
     title: "Commercial Building Installations",
     description: "Office and retail pipeline systems with compliance-first planning.",
     icon: "commercial",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Commercial Building Installations.png",
   },
   {
     title: "Industrial Gas Pipeline Systems",
     description: "High-demand setups built around process safety and uptime.",
     icon: "factory",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Industrial Gas Pipeline Systems.png",
   },
   {
     title: "Gas Leak Detection",
     description: "Fast diagnosis using practical inspection and testing methods.",
     icon: "search",
-    image: "https://images.unsplash.com/photo-1581093458791-9d6c7b3b1b0d?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Gas Leak Detection.png",
   },
   {
     title: "Maintenance & Inspection",
     description: "Routine checks that keep systems efficient and safe.",
     icon: "shield",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Maintenance & Inspection.png",
   },
   {
     title: "Pipeline Repair Services",
     description: "Targeted repairs to restore performance without unnecessary downtime.",
     icon: "tools",
-    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Pipeline Repair Services.png",
   },
   {
     title: "Safety Audits",
     description: "Detailed checks to strengthen compliance and reduce risk.",
     icon: "audit",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
+    image: "/website_images/services_image/Safety Audits.png",
   },
 ];
 
@@ -363,6 +384,17 @@ function SectionHeading({
 
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Projects");
+
+  const projectItemsWithIndex = useMemo(() => {
+    return galleryImages.map((item, index) => ({ item, index }));
+  }, []);
+
+  const filteredProjectItems = useMemo(() => {
+    if (selectedCategory === "All Projects") return projectItemsWithIndex;
+    return projectItemsWithIndex.filter(({ item }) => item.category === selectedCategory);
+  }, [selectedCategory, projectItemsWithIndex]);
+
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
@@ -427,9 +459,13 @@ export default function Home() {
       <div className="fixed inset-x-0 top-0 z-50 border-b border-white/20 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <a href="#top" className="group flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0F172A] text-white shadow-lg shadow-slate-900/20 transition group-hover:scale-105">
-              <span className="font-display text-lg font-bold">SP</span>
-            </div>
+            <Image
+              src="/website_images/logo_v2.png"
+              alt="Secure Pipeline Logo"
+              width={44}
+              height={44}
+              className="rounded-2xl object-contain shadow-lg shadow-slate-900/10 transition group-hover:scale-105"
+            />
             <div>
               <p className="font-display text-lg font-semibold leading-none text-slate-900">Secure Pipeline</p>
               <p className="text-xs text-slate-500">Kelambakkam, Chennai</p>
@@ -458,7 +494,7 @@ export default function Home() {
 
       <header
         id="top"
-        className="relative overflow-hidden bg-[linear-gradient(180deg,#0f172a_0%,#13213d_46%,#f8fafc_46%,#ffffff_100%)] pt-28"
+        className="relative overflow-hidden bg-gradient-to-b from-[#0f172a] to-[#13213d] pt-28"
       >
         <div className="absolute inset-0 -z-10 opacity-35">
           <Image
@@ -469,7 +505,7 @@ export default function Home() {
             className="object-cover object-center"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,211,102,0.34),transparent_30%),linear-gradient(180deg,rgba(15,23,42,0.74),rgba(15,23,42,0.45),rgba(255,255,255,0.95))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,211,102,0.34),transparent_30%),linear-gradient(180deg,rgba(15,23,42,0.74),rgba(15,23,42,0.45),rgba(15,23,42,0.95))]" />
         </div>
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-14 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-20">
@@ -671,32 +707,112 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="bg-slate-50/70 py-16">
+      <section id="gallery" className="bg-white py-16 border-t border-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading
-            eyebrow="Project Gallery"
-            title="Real-world visuals that build confidence quickly."
-            description="Tap any image to open the lightbox and explore project types, from residential jobs to commercial kitchens and industrial work."
-          />
+          {/* Section Header */}
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-[1px] w-8 bg-slate-300"></span>
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-[#25D366]">OUR PROJECTS</span>
+              <span className="h-[1px] w-8 bg-slate-300"></span>
+            </div>
+            <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-[#0F172A] sm:text-4xl">
+              Our Recent Installations
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-500 sm:text-lg">
+              Explore our successfully completed LPG gas pipeline installation projects for residential, commercial, and industrial clients.
+            </p>
+          </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            {galleryImages.map((item, index) => (
-              <button
-                type="button"
-                key={item.title}
-                onClick={() => setLightboxIndex(index)}
-                className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="relative h-72">
-                  <Image src={item.src} alt={item.alt} fill className="object-cover transition duration-700 group-hover:scale-105" sizes="(max-width: 1280px) 100vw, 33vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#25D366]">{item.category}</p>
-                    <h3 className="mt-2 font-display text-2xl font-semibold">{item.title}</h3>
+          {/* Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            {["All Projects", "Residential", "Commercial", "Industrial"].map((category) => {
+              const isActive = selectedCategory === category;
+              return (
+                <button
+                  type="button"
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`rounded-full px-6 py-2 text-sm font-medium transition-all duration-200 border ${
+                    isActive
+                      ? "bg-[#0F172A] text-white border-transparent shadow-sm"
+                      : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                  }`}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredProjectItems.map(({ item, index }) => {
+              const showIcon = item.title !== "Multi-Line Gas System";
+              return (
+                <button
+                  type="button"
+                  key={item.title}
+                  onClick={() => setLightboxIndex(index)}
+                  className="group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full"
+                >
+                  {/* Image Container */}
+                  <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
                   </div>
-                </div>
-              </button>
-            ))}
+
+                  {/* Card Content */}
+                  <div className="mt-4 flex flex-col flex-grow justify-between">
+                    <div>
+                      {/* Title with optional icon */}
+                      <h3 className="font-display text-base font-semibold text-slate-900 group-hover:text-[#25D366] transition-colors duration-200 flex items-center gap-1.5 leading-snug">
+                        {showIcon && (
+                          <svg className="h-4.5 w-4.5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                          </svg>
+                        )}
+                        <span>{item.title}</span>
+                      </h3>
+                      {/* Location text */}
+                      <p className="text-sm text-slate-500 mt-1 pl-0">
+                        {item.location}
+                      </p>
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="mt-3">
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border ${
+                        item.category === 'Residential'
+                          ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+                          : item.category === 'Commercial'
+                          ? 'bg-blue-50 text-blue-700 border-blue-100'
+                          : 'bg-purple-50 text-purple-700 border-purple-100'
+                      }`}>
+                        {item.category}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Footer View More Button */}
+          <div className="mt-12 flex justify-center">
+            <a
+              href={buildWhatsAppUrl("Hello Secure Pipeline, I would like to see more details and photos of your recent gas pipeline installations.")}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-[#25D366] shadow-sm transition-all duration-200 hover:border-[#25D366] hover:bg-slate-50/50"
+            >
+              <span className="text-base font-bold">→</span> View More Projects
+            </a>
           </div>
         </div>
       </section>
@@ -955,9 +1071,18 @@ export default function Home() {
 
       <footer className="border-t border-slate-200 bg-white py-10">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-          <div>
-            <p className="font-display text-2xl font-semibold text-slate-900">Secure Pipeline</p>
-            <p className="mt-3 text-sm leading-7 text-slate-600">LPG gas pipeline installation, repair, inspection, and safety services across Chennai and surrounding areas.</p>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/website_images/logo_v2.png"
+                alt="Secure Pipeline Logo"
+                width={40}
+                height={40}
+                className="rounded-xl object-contain"
+              />
+              <p className="font-display text-2xl font-semibold text-[#0F172A]">Secure Pipeline</p>
+            </div>
+            <p className="mt-1 text-sm leading-7 text-slate-600">LPG gas pipeline installation, repair, inspection, and safety services across Chennai and surrounding areas.</p>
           </div>
 
           <div>
