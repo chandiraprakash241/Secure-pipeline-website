@@ -24,43 +24,43 @@ const address =
   "No: 3/582, SRS Tower, Kanniyamman Kovil Street, Veeranam Road, Kelambakkam, Chennai, Tamil Nadu 603103";
 
 const heroImage =
-  "https://source.unsplash.com/1600x1000/?industrial,pipeline,engineering";
+  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80";
 
 const galleryImages: GalleryItem[] = [
   {
     title: "Residential pipeline upgrade",
     category: "Homes & villas",
-    src: "https://source.unsplash.com/1200x900/?home,pipeline,installation",
+    src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80",
     alt: "Residential gas pipeline installation project",
   },
   {
     title: "Apartment kitchen line",
     category: "Apartments",
-    src: "https://source.unsplash.com/1200x900/?apartment,kitchen,pipes",
+    src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
     alt: "Apartment LPG installation project",
   },
   {
     title: "Commercial kitchen routing",
     category: "Restaurants",
-    src: "https://source.unsplash.com/1200x900/?restaurant,kitchen,engineering",
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
     alt: "Commercial kitchen gas pipeline project",
   },
   {
     title: "Hotel utility installation",
     category: "Hotels",
-    src: "https://source.unsplash.com/1200x900/?hotel,mechanical,room",
+    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
     alt: "Hotel gas pipeline installation project",
   },
   {
     title: "Industrial safety setup",
     category: "Industrial facilities",
-    src: "https://source.unsplash.com/1200x900/?factory,pipes,inspection",
+    src: "https://images.unsplash.com/photo-1493244040629-496f6d136cc3?auto=format&fit=crop&w=1200&q=80",
     alt: "Industrial pipeline installation project",
   },
   {
     title: "Before and after inspection",
     category: "Maintenance",
-    src: "https://source.unsplash.com/1200x900/?inspection,maintenance,tools",
+    src: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
     alt: "Pipeline inspection and maintenance project",
   },
 ];
@@ -70,61 +70,61 @@ const services = [
     title: "Residential LPG Pipeline Installation",
     description: "Safe, neat installations for independent homes and family residences.",
     icon: "home",
-    image: "https://source.unsplash.com/900x700/?home,gas,installation",
+    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Villa Gas Pipeline Systems",
     description: "Custom layouts designed for premium villas and duplex homes.",
     icon: "villa",
-    image: "https://source.unsplash.com/900x700/?villa,plumbing,engineering",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Apartment Gas Pipeline Installation",
     description: "Multi-unit safe routing with clean finishes and coordinated execution.",
     icon: "apartment",
-    image: "https://source.unsplash.com/900x700/?apartment,construction,pipeline",
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Hotel & Restaurant Gas Pipeline Solutions",
     description: "Commercial kitchen lines designed for busy hospitality operations.",
     icon: "restaurant",
-    image: "https://source.unsplash.com/900x700/?restaurant,gas,stove",
+    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Commercial Building Installations",
     description: "Office and retail pipeline systems with compliance-first planning.",
     icon: "commercial",
-    image: "https://source.unsplash.com/900x700/?commercial,building,engineering",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Industrial Gas Pipeline Systems",
     description: "High-demand setups built around process safety and uptime.",
     icon: "factory",
-    image: "https://source.unsplash.com/900x700/?factory,industrial,pipes",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Gas Leak Detection",
     description: "Fast diagnosis using practical inspection and testing methods.",
     icon: "search",
-    image: "https://source.unsplash.com/900x700/?inspection,leak,detection",
+    image: "https://images.unsplash.com/photo-1581093458791-9d6c7b3b1b0d?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Maintenance & Inspection",
     description: "Routine checks that keep systems efficient and safe.",
     icon: "shield",
-    image: "https://source.unsplash.com/900x700/?maintenance,inspection,engineer",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Pipeline Repair Services",
     description: "Targeted repairs to restore performance without unnecessary downtime.",
     icon: "tools",
-    image: "https://source.unsplash.com/900x700/?repair,pipe,tools",
+    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Safety Audits",
     description: "Detailed checks to strengthen compliance and reduce risk.",
     icon: "audit",
-    image: "https://source.unsplash.com/900x700/?safety,audit,engineering",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
   },
 ];
 
@@ -465,7 +465,7 @@ export default function Home() {
             src={heroImage}
             alt="Gas pipeline installation background"
             fill
-            priority
+            preload
             className="object-cover object-center"
             sizes="100vw"
           />
@@ -525,7 +525,7 @@ export default function Home() {
             <div className="rounded-[2rem] border border-slate-200 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.18)]">
               <div className="overflow-hidden rounded-[1.5rem]">
                 <div className="relative h-[22rem] w-full sm:h-[28rem]">
-                  <Image src={heroImage} alt="Secure Pipeline service visual" fill priority className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
+                  <Image src={heroImage} alt="Secure Pipeline service visual" fill preload className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/10 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
                     <div className="flex flex-wrap gap-2">
