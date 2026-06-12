@@ -385,6 +385,8 @@ function SectionHeading({
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("All Projects");
+  const [showAllServices, setShowAllServices] = useState<boolean>(false);
+  const [showAllProjects, setShowAllProjects] = useState<boolean>(false);
 
   const projectItemsWithIndex = useMemo(() => {
     return galleryImages.map((item, index) => ({ item, index }));
@@ -599,7 +601,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 md:py-12 sm:px-6 lg:px-8">
         <div className="grid gap-4 md:grid-cols-4">
           {[
             ["24/7 lead capture", "Phone, WhatsApp, and quote form always visible"],
@@ -615,7 +617,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 md:py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <SectionHeading
@@ -659,7 +661,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="bg-slate-50/80 py-16">
+      <section id="services" className="bg-slate-50/80 py-10 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Services"
@@ -667,7 +669,8 @@ export default function Home() {
             description="Each card leads with an image and a simple service promise so visitors can quickly understand what Secure Pipeline handles."
           />
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {/* Desktop Grid Layout (hidden on mobile) */}
+          <div className="mt-10 hidden md:grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
               <article key={service.title} className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-2xl">
                 <div className="relative h-52">
@@ -683,6 +686,36 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* Mobile Carousel Layout (hidden on desktop) */}
+          <div className="mt-8 flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-4 -mx-4 md:hidden">
+            {(showAllServices ? services : services.slice(0, 4)).map((service) => (
+              <article key={service.title} className="w-[280px] shrink-0 snap-start group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:shadow-xl">
+                <div className="relative h-40">
+                  <Image src={service.image} alt={service.title} fill className="object-cover" sizes="280px" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
+                  <div className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/90 text-slate-900 shadow-lg backdrop-blur-md">
+                    <Icon kind={service.icon} />
+                  </div>
+                </div>
+                <div className="space-y-3 p-5">
+                  <h3 className="font-display text-xl font-semibold leading-tight text-slate-900">{service.title}</h3>
+                  <p className="text-sm leading-6 text-slate-600">{service.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Mobile View More Button */}
+          <div className="mt-4 flex justify-center md:hidden">
+            <button
+              type="button"
+              onClick={() => setShowAllServices(!showAllServices)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50"
+            >
+              {showAllServices ? "Show Less" : "View More Services"}
+            </button>
           </div>
         </div>
       </section>
@@ -707,7 +740,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="bg-white py-16 border-t border-slate-100">
+      <section id="gallery" className="bg-white py-10 md:py-16 border-t border-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
@@ -732,7 +765,10 @@ export default function Home() {
                 <button
                   type="button"
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setShowAllProjects(false);
+                  }}
                   className={`rounded-full px-6 py-2 text-sm font-medium transition-all duration-200 border ${
                     isActive
                       ? "bg-[#0F172A] text-white border-transparent shadow-sm"
@@ -745,8 +781,8 @@ export default function Home() {
             })}
           </div>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Desktop Cards Grid (hidden on mobile) */}
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProjectItems.map(({ item, index }) => {
               const showIcon = item.title !== "Multi-Line Gas System";
               return (
@@ -803,8 +839,77 @@ export default function Home() {
             })}
           </div>
 
-          {/* Footer View More Button */}
-          <div className="mt-12 flex justify-center">
+          {/* Mobile Carousel (hidden on desktop) */}
+          <div className="mt-8 flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-4 -mx-4 sm:hidden">
+            {(showAllProjects ? filteredProjectItems : filteredProjectItems.slice(0, 4)).map(({ item, index }) => {
+              const showIcon = item.title !== "Multi-Line Gas System";
+              return (
+                <button
+                  type="button"
+                  key={item.title}
+                  onClick={() => setLightboxIndex(index)}
+                  className="w-[280px] shrink-0 snap-start group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-4 shadow-sm transition-all duration-300 hover:shadow-xl flex flex-col h-full"
+                >
+                  {/* Image Container with aspect-[16/9] (approx 25% height reduction from 4/3) */}
+                  <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl bg-slate-50">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover"
+                      sizes="280px"
+                    />
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="mt-4 flex flex-col flex-grow justify-between">
+                    <div>
+                      {/* Title with optional icon */}
+                      <h3 className="font-display text-base font-semibold text-slate-900 group-hover:text-[#25D366] transition-colors duration-200 flex items-center gap-1.5 leading-snug">
+                        {showIcon && (
+                          <svg className="h-4.5 w-4.5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                          </svg>
+                        )}
+                        <span>{item.title}</span>
+                      </h3>
+                      {/* Location text */}
+                      <p className="text-sm text-slate-500 mt-1 pl-0">
+                        {item.location}
+                      </p>
+                    </div>
+
+                    {/* Category Badge */}
+                    <div className="mt-3">
+                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border ${
+                        item.category === 'Residential'
+                          ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+                          : item.category === 'Commercial'
+                          ? 'bg-blue-50 text-blue-700 border-blue-100'
+                          : 'bg-purple-50 text-purple-700 border-purple-100'
+                      }`}>
+                        {item.category}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Gallery View More Toggle (Mobile Only) */}
+          <div className="mt-4 flex justify-center sm:hidden">
+            <button
+              type="button"
+              onClick={() => setShowAllProjects(!showAllProjects)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50"
+            >
+              {showAllProjects ? "Show Less" : "View More Projects"}
+            </button>
+          </div>
+
+          {/* Desktop Footer View More Button (hidden on mobile) */}
+          <div className="mt-12 hidden sm:flex justify-center">
             <a
               href={buildWhatsAppUrl("Hello Secure Pipeline, I would like to see more details and photos of your recent gas pipeline installations.")}
               target="_blank"
@@ -817,7 +922,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="reviews" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="reviews" className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Customer Reviews"
           title="Trust signals that help enquiries happen faster."
@@ -867,7 +972,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="service-areas" className="bg-slate-50/80 py-16">
+      <section id="service-areas" className="bg-slate-50/80 py-10 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Service Areas"
@@ -904,7 +1009,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="faq" className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="FAQ"
           title="Answers that reduce friction before the first call."
@@ -923,7 +1028,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0F172A] py-16 text-white">
+      <section id="contact" className="bg-[#0F172A] py-10 md:py-16 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
