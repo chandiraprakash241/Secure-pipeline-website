@@ -369,7 +369,7 @@ function SectionHeading({
 }: {
   eyebrow: string;
   title: string;
-  description: string;
+  description?: string;
 }) {
   return (
     <div className="max-w-3xl">
@@ -377,7 +377,7 @@ function SectionHeading({
       <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p>
+      {description && <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p>}
     </div>
   );
 }
@@ -387,6 +387,18 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All Projects");
   const [showAllServices, setShowAllServices] = useState<boolean>(false);
   const [showAllProjects, setShowAllProjects] = useState<boolean>(false);
+  const [activeProcessStep, setActiveProcessStep] = useState<number>(0);
+
+  const handleProcessScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const stepWidth = container.clientWidth;
+    if (stepWidth > 0) {
+      const index = Math.round(container.scrollLeft / stepWidth);
+      if (index >= 0 && index < processSteps.length) {
+        setActiveProcessStep(index);
+      }
+    }
+  };
 
   const projectItemsWithIndex = useMemo(() => {
     return galleryImages.map((item, index) => ({ item, index }));
@@ -617,8 +629,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 md:py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+      <section className="mx-auto max-w-7xl px-4 py-6 md:py-12 sm:px-6 lg:px-8">
+        {/* Desktop Layout (hidden on mobile/tablet below lg breakpoint) */}
+        <div className="hidden lg:grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <SectionHeading
               eyebrow="About"
@@ -659,9 +672,38 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        {/* Mobile/Tablet Layout (hidden on lg and above) */}
+        <div className="lg:hidden space-y-6">
+          <SectionHeading
+            eyebrow="About"
+            title="Built around safety, speed, and trust."
+            description="Secure Pipeline focuses on clean execution, careful planning, and service that makes it easy for customers to enquire and move forward quickly."
+          />
+
+          <div className="rounded-[2rem] border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-6 shadow-sm">
+            <h3 className="font-display text-xl font-semibold text-slate-900 mb-4">Why Choose Us</h3>
+            <div className="space-y-4">
+              {[
+                { title: "Certified Professionals", icon: "badge" },
+                { title: "Safety Compliance", icon: "shield" },
+                { title: "Quality Materials", icon: "check" },
+                { title: "On-Time Service", icon: "clock" },
+                { title: "Reliable Support", icon: "headset" },
+              ].map((item) => (
+                <div key={item.title} className="flex items-center gap-3.5">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0F172A] text-white">
+                    <Icon kind={item.icon} />
+                  </div>
+                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="services" className="bg-slate-50/80 py-10 md:py-16">
+      <section id="services" className="bg-slate-50/80 py-8 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Services"
@@ -720,14 +762,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-8 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Process"
           title="Simple, transparent workflow."
           description="The installation journey is easy to understand and designed to move the customer to the next step quickly."
         />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+        {/* Desktop Process view (hidden on mobile) */}
+        <div className="mt-10 hidden md:grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           {processSteps.map((step, index) => (
             <div key={step} className="relative rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F172A] text-lg font-bold text-white">
@@ -738,9 +781,41 @@ export default function Home() {
             </div>
           ))}
         </div>
+
+        {/* Mobile Process swipeable timeline/carousel (hidden on desktop) */}
+        <div className="md:hidden mt-8">
+          <div 
+            onScroll={handleProcessScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none px-4 -mx-4 pb-4"
+          >
+            {processSteps.map((step, index) => (
+              <div key={step} className="w-full shrink-0 snap-center px-4">
+                <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md text-center">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0F172A] text-xl font-bold text-white mb-4">
+                    {index + 1}
+                  </div>
+                  <p className="font-display text-xl font-semibold text-slate-900">{step}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">Clear, documented, and focused on safety.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Step Progress Dots */}
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {processSteps.map((_, index) => (
+              <div 
+                key={index}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeProcessStep === index ? "w-6 bg-[#25D366]" : "w-2 bg-slate-200"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section id="gallery" className="bg-white py-10 md:py-16 border-t border-slate-100">
+      <section id="gallery" className="bg-white py-8 md:py-16 border-t border-slate-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
@@ -922,7 +997,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="reviews" className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
+      <section id="reviews" className="mx-auto max-w-7xl px-4 py-8 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Customer Reviews"
           title="Trust signals that help enquiries happen faster."
@@ -972,7 +1047,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="service-areas" className="bg-slate-50/80 py-10 md:py-16">
+      <section id="service-areas" className="bg-slate-50/80 py-8 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Service Areas"
@@ -1009,11 +1084,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="mx-auto max-w-7xl px-4 py-10 md:py-16 sm:px-6 lg:px-8">
+      <section id="faq" className="mx-auto max-w-7xl px-4 py-8 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="FAQ"
-          title="Answers that reduce friction before the first call."
-          description="Use these short answers to help visitors understand installation cost, safety, duration, maintenance, and service coverage."
+          title="Frequently Asked Questions"
         />
 
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
@@ -1028,7 +1102,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0F172A] py-10 md:py-16 text-white">
+      <section id="contact" className="bg-[#0F172A] py-8 md:py-16 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
