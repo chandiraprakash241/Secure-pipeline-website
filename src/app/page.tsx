@@ -3,14 +3,6 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
-type GalleryItem = {
-  title: string;
-  location: string;
-  category: string;
-  src: string;
-  alt: string;
-};
-
 type FormState = {
   name: string;
   phone: string;
@@ -25,127 +17,95 @@ const address =
   "No: 3/582, SRS Tower, Kanniyamman Kovil Street, Veeranam Road, Kelambakkam, Chennai, Tamil Nadu 603103";
 
 const heroImage =
-  "/website_images/hero_section_image_v2.png";
+  "/website_images/herosection image.png";
 
-const galleryImages: GalleryItem[] = [
-  {
-    title: "Residential LPG Pipeline",
-    location: "Independent House, Kelambakkam",
-    category: "Residential",
-    src: "/website_images/resedential lpg pipeline.png",
-    alt: "Residential LPG Pipeline",
-  },
-  {
-    title: "Home Gas Line Installation",
-    location: "Villa Project, OMR",
-    category: "Residential",
-    src: "/website_images/home gas line installation.png",
-    alt: "Home Gas Line Installation",
-  },
-  {
-    title: "Residential Gas Piping",
-    location: "Individual House, Navalur",
-    category: "Residential",
-    src: "/website_images/resedential gas piping.png",
-    alt: "Residential Gas Piping",
-  },
-  {
-    title: "External Gas Line Setup",
-    location: "Independent House, Chennai",
-    category: "Residential",
-    src: "/website_images/external gas line setup.png",
-    alt: "External Gas Line Setup",
-  },
-  {
-    title: "Underground Gas Pipeline",
-    location: "Apartment Project, Sholinganallur",
-    category: "Commercial",
-    src: "/website_images/underground gas pipeline.png",
-    alt: "Underground Gas Pipeline",
-  },
-  {
-    title: "Commercial Gas Installation",
-    location: "Restaurant, OMR",
-    category: "Commercial",
-    src: "/website_images/commercial gas installation.png",
-    alt: "Commercial Gas Installation",
-  },
-  {
-    title: "Multi-Line Gas System",
-    location: "Hotel Kitchen, ECR",
-    category: "Commercial",
-    src: "/website_images/multiline gas system.png",
-    alt: "Multi-Line Gas System",
-  },
-  {
-    title: "Industrial Gas Pipeline",
-    location: "Factory Unit, Chengalpattu",
-    category: "Industrial",
-    src: "/website_images/industrial gas pipeline.png",
-    alt: "Industrial Gas Pipeline",
-  },
-];
+const ourWorksImages = [
+  "Screenshot 2026-06-12 150424.png",
+  "Screenshot 2026-06-12 150523.png",
+  "Screenshot 2026-06-12 150543.png",
+  "Screenshot 2026-06-12 150558.png",
+  "Screenshot 2026-06-12 150606.png",
+  "Screenshot 2026-06-12 151939.png",
+  "Screenshot 2026-06-12 151950.png",
+  "Screenshot 2026-06-12 152014.png",
+  "Screenshot 2026-06-12 152035.png",
+  "Screenshot 2026-06-12 152047.png",
+  "Screenshot 2026-06-12 152056.png",
+  "Screenshot 2026-06-12 152143.png",
+  "Screenshot 2026-06-12 152222.png",
+  "Screenshot 2026-06-12 152307.png",
+  "Screenshot 2026-06-12 152417.png",
+  "Screenshot 2026-06-12 153924.png",
+  "Screenshot 2026-06-12 153937.png",
+  "Screenshot 2026-06-12 154015.png",
+  "Screenshot 2026-06-12 154028.png",
+  "Screenshot 2026-06-12 154115.png",
+  "Screenshot 2026-06-12 160934.png",
+  "Screenshot 2026-06-12 161111.png",
+  "Screenshot 2026-06-12 161552.png",
+  "Screenshot 2026-06-12 161601.png"
+].map(name => `/our_works/${name}`);
 
 const services = [
   {
     title: "Residential LPG Pipeline Installation",
     description: "Safe, neat installations for independent homes and family residences.",
     icon: "home",
-    image: "/website_images/services_image/Residential LPG Pipeline Installation.png",
+    image: "/services/8.png",
   },
   {
     title: "Villa Gas Pipeline Systems",
     description: "Custom layouts designed for premium villas and duplex homes.",
     icon: "villa",
-    image: "/website_images/services_image/Villa Gas Pipeline Systems.png",
+    image: "/services/14.png",
   },
   {
     title: "Apartment Gas Pipeline Installation",
     description: "Multi-unit safe routing with clean finishes and coordinated execution.",
     icon: "apartment",
-    image: "/website_images/services_image/Apartment Gas Pipeline Installation.png",
+    image: "/services/11.png",
   },
   {
     title: "Hotel & Restaurant Gas Pipeline Solutions",
     description: "Commercial kitchen lines designed for busy hospitality operations.",
     icon: "restaurant",
-    image: "/website_images/services_image/Hotel & Restaurant Gas Pipeline Solutions.png",
+    image: "/services/32.png",
   },
   {
     title: "Commercial Building Installations",
     description: "Office and retail pipeline systems with compliance-first planning.",
     icon: "commercial",
-    image: "/website_images/services_image/Commercial Building Installations.png",
+    image: "/services/10.png",
   },
   {
     title: "Industrial Gas Pipeline Systems",
     description: "High-demand setups built around process safety and uptime.",
     icon: "factory",
-    image: "/website_images/services_image/Industrial Gas Pipeline Systems.png",
+    image: "/services/24.png",
   },
   {
     title: "Gas Leak Detection",
     description: "Fast diagnosis using practical inspection and testing methods.",
     icon: "search",
-    image: "/website_images/services_image/Gas Leak Detection.png",
+    image: "/services/5.png",
   },
   {
     title: "Maintenance & Inspection",
     description: "Routine checks that keep systems efficient and safe.",
     icon: "shield",
-    image: "/website_images/services_image/Maintenance & Inspection.png",
+    image: "/services/35.png",
   },
   {
     title: "Pipeline Repair Services",
     description: "Targeted repairs to restore performance without unnecessary downtime.",
     icon: "tools",
-    image: "/website_images/services_image/Pipeline Repair Services.png",
+    image: "/services/27.png",
   },
   {
     title: "Safety Audits",
     description: "Detailed checks to strengthen compliance and reduce risk.",
     icon: "audit",
-    image: "/website_images/services_image/Safety Audits.png",
+    image: "/services/16.png",
   },
 ];
 
@@ -383,11 +343,10 @@ function SectionHeading({
 }
 
 export default function Home() {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All Projects");
   const [showAllServices, setShowAllServices] = useState<boolean>(false);
-  const [showAllProjects, setShowAllProjects] = useState<boolean>(false);
   const [activeProcessStep, setActiveProcessStep] = useState<number>(0);
+  const [worksLightboxIndex, setWorksLightboxIndex] = useState<number | null>(null);
+  const [activeWorksIndex, setActiveWorksIndex] = useState<number>(0);
 
   const handleProcessScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
@@ -400,14 +359,16 @@ export default function Home() {
     }
   };
 
-  const projectItemsWithIndex = useMemo(() => {
-    return galleryImages.map((item, index) => ({ item, index }));
-  }, []);
-
-  const filteredProjectItems = useMemo(() => {
-    if (selectedCategory === "All Projects") return projectItemsWithIndex;
-    return projectItemsWithIndex.filter(({ item }) => item.category === selectedCategory);
-  }, [selectedCategory, projectItemsWithIndex]);
+  const handleWorksScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const stepWidth = 280 + 16; // w-[280px] + gap-4 (16px)
+    if (stepWidth > 0) {
+      const index = Math.round(container.scrollLeft / stepWidth);
+      if (index >= 0 && index < ourWorksImages.length) {
+        setActiveWorksIndex(index);
+      }
+    }
+  };
 
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -613,6 +574,88 @@ export default function Home() {
         </div>
       </header>
 
+      <section id="gallery" className="bg-white py-8 md:py-16 border-b border-slate-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-[1px] w-8 bg-slate-300"></span>
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-[#25D366]">OUR WORKS</span>
+              <span className="h-[1px] w-8 bg-slate-300"></span>
+            </div>
+            <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-[#0F172A] sm:text-4xl">
+              Our Projects & Installations
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-500 sm:text-lg">
+              Explore our successfully completed LPG gas pipeline installation projects for residential, commercial, and industrial clients.
+            </p>
+          </div>
+
+          {/* Desktop/Tablet Grid View (2 columns on tablet, 3-4 on desktop) */}
+          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
+            {ourWorksImages.map((src, index) => (
+              <button
+                type="button"
+                key={src}
+                onClick={() => setWorksLightboxIndex(index)}
+                className="group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col"
+              >
+                <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50">
+                  <Image
+                    src={src}
+                    alt={`Secure Pipeline Project ${index + 1}`}
+                    fill
+                    loading="lazy"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Swipeable Carousel View (Do NOT stack vertically) */}
+          <div className="sm:hidden mt-8">
+            <div
+              onScroll={handleWorksScroll}
+              className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none px-4 -mx-4"
+            >
+              {ourWorksImages.map((src, index) => (
+                <button
+                  type="button"
+                  key={src}
+                  onClick={() => setWorksLightboxIndex(index)}
+                  className="w-[280px] shrink-0 snap-start group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-3 shadow-sm flex flex-col"
+                >
+                  <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl bg-slate-50">
+                    <Image
+                      src={src}
+                      alt={`Secure Pipeline Project ${index + 1}`}
+                      fill
+                      loading="lazy"
+                      className="object-cover"
+                      sizes="280px"
+                    />
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Progress Bar Indicator */}
+            <div className="mt-4 flex justify-center items-center">
+              <div className="h-1.5 w-28 bg-slate-100 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-[#25D366] transition-all duration-150 rounded-full"
+                  style={{ width: `${((activeWorksIndex + 1) / ourWorksImages.length) * 100}%` }}
+                />
+              </div>
+              <span className="text-xs text-slate-500 font-semibold ml-3">
+                {activeWorksIndex + 1} / {ourWorksImages.length}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-4 py-8 md:py-12 sm:px-6 lg:px-8">
         <div className="grid gap-4 md:grid-cols-4">
           {[
@@ -815,187 +858,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="gallery" className="bg-white py-8 md:py-16 border-t border-slate-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
-            <div className="flex items-center justify-center gap-3">
-              <span className="h-[1px] w-8 bg-slate-300"></span>
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-[#25D366]">OUR PROJECTS</span>
-              <span className="h-[1px] w-8 bg-slate-300"></span>
-            </div>
-            <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-[#0F172A] sm:text-4xl">
-              Our Recent Installations
-            </h2>
-            <p className="mt-4 text-base leading-7 text-slate-500 sm:text-lg">
-              Explore our successfully completed LPG gas pipeline installation projects for residential, commercial, and industrial clients.
-            </p>
-          </div>
 
-          {/* Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-            {["All Projects", "Residential", "Commercial", "Industrial"].map((category) => {
-              const isActive = selectedCategory === category;
-              return (
-                <button
-                  type="button"
-                  key={category}
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setShowAllProjects(false);
-                  }}
-                  className={`rounded-full px-6 py-2 text-sm font-medium transition-all duration-200 border ${
-                    isActive
-                      ? "bg-[#0F172A] text-white border-transparent shadow-sm"
-                      : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Desktop Cards Grid (hidden on mobile) */}
-          <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredProjectItems.map(({ item, index }) => {
-              const showIcon = item.title !== "Multi-Line Gas System";
-              return (
-                <button
-                  type="button"
-                  key={item.title}
-                  onClick={() => setLightboxIndex(index)}
-                  className="group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col h-full"
-                >
-                  {/* Image Container */}
-                  <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl bg-slate-50">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    />
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="mt-4 flex flex-col flex-grow justify-between">
-                    <div>
-                      {/* Title with optional icon */}
-                      <h3 className="font-display text-base font-semibold text-slate-900 group-hover:text-[#25D366] transition-colors duration-200 flex items-center gap-1.5 leading-snug">
-                        {showIcon && (
-                          <svg className="h-4.5 w-4.5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                          </svg>
-                        )}
-                        <span>{item.title}</span>
-                      </h3>
-                      {/* Location text */}
-                      <p className="text-sm text-slate-500 mt-1 pl-0">
-                        {item.location}
-                      </p>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="mt-3">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border ${
-                        item.category === 'Residential'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
-                          : item.category === 'Commercial'
-                          ? 'bg-blue-50 text-blue-700 border-blue-100'
-                          : 'bg-purple-50 text-purple-700 border-purple-100'
-                      }`}>
-                        {item.category}
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Mobile Carousel (hidden on desktop) */}
-          <div className="mt-8 flex gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-none px-4 -mx-4 sm:hidden">
-            {(showAllProjects ? filteredProjectItems : filteredProjectItems.slice(0, 4)).map(({ item, index }) => {
-              const showIcon = item.title !== "Multi-Line Gas System";
-              return (
-                <button
-                  type="button"
-                  key={item.title}
-                  onClick={() => setLightboxIndex(index)}
-                  className="w-[280px] shrink-0 snap-start group overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white text-left p-4 shadow-sm transition-all duration-300 hover:shadow-xl flex flex-col h-full"
-                >
-                  {/* Image Container with aspect-[16/9] (approx 25% height reduction from 4/3) */}
-                  <div className="relative w-full aspect-[16/9] overflow-hidden rounded-2xl bg-slate-50">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      className="object-cover"
-                      sizes="280px"
-                    />
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="mt-4 flex flex-col flex-grow justify-between">
-                    <div>
-                      {/* Title with optional icon */}
-                      <h3 className="font-display text-base font-semibold text-slate-900 group-hover:text-[#25D366] transition-colors duration-200 flex items-center gap-1.5 leading-snug">
-                        {showIcon && (
-                          <svg className="h-4.5 w-4.5 text-slate-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                          </svg>
-                        )}
-                        <span>{item.title}</span>
-                      </h3>
-                      {/* Location text */}
-                      <p className="text-sm text-slate-500 mt-1 pl-0">
-                        {item.location}
-                      </p>
-                    </div>
-
-                    {/* Category Badge */}
-                    <div className="mt-3">
-                      <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border ${
-                        item.category === 'Residential'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
-                          : item.category === 'Commercial'
-                          ? 'bg-blue-50 text-blue-700 border-blue-100'
-                          : 'bg-purple-50 text-purple-700 border-purple-100'
-                      }`}>
-                        {item.category}
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Gallery View More Toggle (Mobile Only) */}
-          <div className="mt-4 flex justify-center sm:hidden">
-            <button
-              type="button"
-              onClick={() => setShowAllProjects(!showAllProjects)}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50"
-            >
-              {showAllProjects ? "Show Less" : "View More Projects"}
-            </button>
-          </div>
-
-          {/* Desktop Footer View More Button (hidden on mobile) */}
-          <div className="mt-12 hidden sm:flex justify-center">
-            <a
-              href={buildWhatsAppUrl("Hello Secure Pipeline, I would like to see more details and photos of your recent gas pipeline installations.")}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-semibold text-[#25D366] shadow-sm transition-all duration-200 hover:border-[#25D366] hover:bg-slate-50/50"
-            >
-              <span className="text-base font-bold">→</span> View More Projects
-            </a>
-          </div>
-        </div>
-      </section>
 
       <section id="reviews" className="mx-auto max-w-7xl px-4 py-8 md:py-16 sm:px-6 lg:px-8">
         <SectionHeading
@@ -1341,10 +1204,10 @@ export default function Home() {
         </div>
       </div>
 
-      {lightboxIndex !== null && (
+      {worksLightboxIndex !== null && (
         <div
           className="fixed inset-0 z-[60] bg-slate-950/90 px-4 py-6 backdrop-blur-sm"
-          onClick={() => setLightboxIndex(null)}
+          onClick={() => setWorksLightboxIndex(null)}
           role="presentation"
         >
           <div className="mx-auto flex h-full max-w-5xl items-center justify-center">
@@ -1353,24 +1216,24 @@ export default function Home() {
               onClick={(event) => event.stopPropagation()}
               role="presentation"
             >
-              <div className="relative h-[32rem] w-full">
+              <div className="relative h-[24rem] sm:h-[32rem] w-full bg-slate-950">
                 <Image
-                  src={galleryImages[lightboxIndex].src}
-                  alt={galleryImages[lightboxIndex].alt}
+                  src={ourWorksImages[worksLightboxIndex]}
+                  alt={`Secure Pipeline Project ${worksLightboxIndex + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   sizes="100vw"
                 />
               </div>
               <div className="flex items-center justify-between gap-4 p-5">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#25D366]">{galleryImages[lightboxIndex].category}</p>
-                  <p className="font-display mt-2 text-2xl font-semibold text-slate-900">{galleryImages[lightboxIndex].title}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#25D366]">OUR WORKS</p>
+                  <p className="font-display mt-2 text-2xl font-semibold text-slate-900">Project Showcase {worksLightboxIndex + 1}</p>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setLightboxIndex(null)}
-                  className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white"
+                  onClick={() => setWorksLightboxIndex(null)}
+                  className="rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
                 >
                   Close
                 </button>
